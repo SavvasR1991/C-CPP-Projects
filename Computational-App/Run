@@ -1,0 +1,59 @@
+#!/bin/bash
+DIR=$(pwd)			
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+echo ${machine}
+
+if [ ${machine} == "Linux" ]
+then
+	echo "Running programs in Linux Enviroment"
+	if [ "$1" == "clean" ] 
+	then
+		echo "Clean up.."
+		rm -rfv Source/build/*
+	else
+		if [ "$1" != "" ]
+		then
+			echo "Ignoring extra arguments.."
+		fi
+		echo "Running project.."
+		echo "CMake Building for Carmichael Numbers.."
+		cd Programms
+		mkdir build
+		cd build
+		cmake ..
+		echo "CMake Build done"
+		echo "Build project..."
+		make
+		echo "Build done..."
+		echo "-Running Carmichael Numbers..."
+		echo "------------------------ Carmichael Numbers ------------------------"
+		./Carmichael;
+		echo "--------------------------------------------------------------------"
+		echo ""
+		echo ""
+		echo "-Running Happy Prime Numbers..."
+		echo "------------------------ Happy Prime Numbers ------------------------"
+		./HappyPrimes;
+		echo "---------------------------------------------------------------------"
+		echo ""
+		echo ""
+		echo "-Running Calculator..."
+		echo "------------------------ Calculator ------------------------"
+		./Calculator; 
+		echo "------------------------------------------------------------"
+		echo ""
+		echo ""
+		echo "-Running Valid Emails Check..."
+		echo "------------------------ Valid Emails ------------------------"
+		./ValidEmailsCheck
+		echo "--------------------------------------------------------------"
+	fi
+fi

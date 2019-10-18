@@ -1,0 +1,9 @@
+/*/////////////////////////////////////////////////////////////////////////////
+//ARXEIO KEFALIDAS GIA THs SYNARTHSEIS iterative,pureRecursive,matrRecursive///
+/////////////////////////////////////////////////////////////////////////////*/
+
+void iterative(int **,int,int);
+
+int matrRecursuve(int **,int,int,int,int,int **);
+
+int pureRecursive(int **,int,int,int,int);
