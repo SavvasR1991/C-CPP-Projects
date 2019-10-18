@@ -6,7 +6,6 @@ trap ctrl_c INT
 function ctrl_c() {
         echo "** Trapped CTRL-C"
 }
-
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=Linux;;
@@ -29,27 +28,13 @@ then
 		then
 			echo "Ignoring extra arguments.."
 		fi
-		
-		cd Computational_App	
-		echo "Running Projects in Computational_App Folder"
-		./Run
-		cd ../
-
-		cd Hanoi_Simulation
-		echo "Running Projects in Hanoi_Simulation Folder"
-		./Run
-		cd ../
-
-		cd Telephone_List
-		echo "Running Projects in Telephone_List Folder"
-		./Run
-		cd ../
-
-		cd Matrix_Max_Summary
-	    echo "Running Projects in Matrix_Max_Summary Folder"
-		./Run
-		cd ../
-		cd ../
-
+        
+        declare -a StringArray=("Computational-App" "Hanoi-Simulation" "Matrix-Max-Summary" "Object-Example-Simulation" "Telephone-List")
+        for val in ${StringArray[@]}; do 
+            cd $val 
+            printf 'Running Projects in: %s\n Folder' "$val"
+            ./Run
+            cd ../
+        done
 	fi
 fi
